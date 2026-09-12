@@ -1,5 +1,6 @@
 package com.ecom.mail.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,12 @@ public class EmailController {
 	private final EmailService emailService;
 
 	@PostMapping
-	public void sendMail(@RequestBody SendMailRequest req) {
+	public ResponseEntity<?> sendMail(@RequestBody SendMailRequest req) {
 		String template = "order-confirmation";
 		String subject = "Order Confirmation";
 		emailService.sendMail(req.to(), subject, template, req.data());
+		
+		return ResponseEntity.ok().build();
 	}
 
 }

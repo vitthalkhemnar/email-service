@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ecom</groupId>
-	<artifactId>EmailService</artifactId>
+	<artifactId>email-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EmailService</name>
+	<name>email-service</name>
 	<description/>
 	<url/>
 	<licenses>
@@ -77,6 +77,10 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 	</dependencies>
 

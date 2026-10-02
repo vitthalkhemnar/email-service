@@ -1,4 +1,4 @@
-package com.ecom.mail.security;
+package com.ecom.mail.config;
 
 import java.util.List;
 
@@ -12,6 +12,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import com.ecom.mail.filter.JwtAuthenticationFilter;
 
 import lombok.RequiredArgsConstructor;
 

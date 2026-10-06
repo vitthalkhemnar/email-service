@@ -27,4 +27,12 @@ public class EmailController {
 		return ResponseEntity.ok().build();
 	}
 
+	@PostMapping("/otp")
+	public ResponseEntity<?> sendOtpMail(@RequestBody com.ecom.mail.dto.SendOtpEmailRequest req) {
+		String otp = emailService.sendAndStoreOtp(req.to(), req.otp());
+		return ResponseEntity.ok(java.util.Map.of(
+				"message", "OTP sent and stored in Redis successfully",
+				"to", req.to()
+		));
+	}
 }

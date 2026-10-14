@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			return;
 		}
 
-		String token = authHeader.substring(7);
+		String token = authHeader.substring(7).trim();
 
 		try {
 			Claims claims = Jwts.parser()
@@ -42,15 +42,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 					.getPayload();
 
 			String username = claims.getSubject();
+			@SuppressWarnings("unchecked")
 			List<String> roles = claims.get("role", List.class);
 
-			var authorities = roles.stream()
-					.map(SimpleGrantedAuthority::new)
-					.toList();
+			List<SimpleGrantedAuthority> authorities = (roles != null)
+					? roles.stream().map(SimpleGrantedAuthority::new).toList()
+					: List.of();
 
 			var authToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
 
-			Thread.currentThread().setName(username);
+			Thread.currentThread().setName(username != null ? username : "anonymous");
 			SecurityContextHolder.getContext().setAuthentication(authToken);
 
 		} catch (Exception e) {

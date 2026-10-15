@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecom.mail.dto.SendMailRequest;
 import com.ecom.mail.dto.SendOtpEmailRequest;
-import com.ecom.mail.service.EmailService;
+import com.ecom.mail.service.BrevoEmailService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @SecurityRequirement(name = "bearerAuth")
 public class EmailController {
 
-	private final EmailService emailService;
+	private final BrevoEmailService emailService;
 
 	@Tag(name = "Email Notifications", description = "Endpoints for sending transactional and confirmation emails")
 	@Operation(
@@ -49,7 +49,7 @@ public class EmailController {
 	public ResponseEntity<Map<String, String>> sendOtpMail(@RequestBody SendOtpEmailRequest req) {
 		String otp = emailService.sendAndStoreOtp(req.to(), req.otp());
 		return ResponseEntity.ok(Map.of(
-				"message", "OTP sent and stored in Redis successfully",
+				"message", "OTP sent successfully",
 				"to", req.to()
 		));
 	}

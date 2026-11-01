@@ -1,0 +1,5 @@
+package com.ecom.mail.dto.external;
+
+public enum OrderStatus {
+	CREATED, CONFIRMED, PAYMENT_PENDING, PAYMENT_FAILED, PAYMENT_SUCCESS, DELIVERED, FAILED, CANCELLED
+}

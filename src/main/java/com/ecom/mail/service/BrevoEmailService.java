@@ -49,6 +49,10 @@ public class BrevoEmailService {
 
 	public void sendMail(String to, String subject, String templateName, Map<String, Object> variables) {
 		try {
+			if(to == null || to.isBlank()) {
+				log.info("to email address is null for order: {}", variables.get("bookingId"));
+			}
+			
 			// 1. Process your Thymeleaf template into an HTML string
 			Context context = new Context();
 			context.setVariables(variables);
